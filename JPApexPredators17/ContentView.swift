@@ -10,15 +10,10 @@ import SwiftUI
 struct ContentView: View {
     let predators = Predators()
     @State var searchText = ""
+    @State var alphabetical = false
     var filteredDinos : [ApexPredator] {
-        if searchText.isEmpty {
-            return predators.apexPredators
-        } else {
-            return predators.apexPredators.filter{
-                predator in
-                predator.name.localizedCaseInsensitiveContains(searchText)
-            }
-        }
+        predators.sort(by: alphabetical)
+        return predators.search(for: searchText)
     }
     
     var body: some View {
@@ -35,7 +30,7 @@ struct ContentView: View {
                         Image(predator.image)
                             .resizable()
                             .scaledToFit()
-                            .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: 100)
+                            .frame(width: 100, height: 100)
                             .shadow(color: .white, radius: 1)
                         VStack(alignment: .leading){
                             //                    name
@@ -58,7 +53,19 @@ struct ContentView: View {
             .searchable(text: $searchText)
             .autocorrectionDisabled()
             .animation(.default, value : searchText)
-        }.preferredColorScheme(/*@START_MENU_TOKEN@*/.dark/*@END_MENU_TOKEN@*/)
+            .toolbar{
+                ToolbarItem(placement: .topBarLeading){
+                    Button { 
+                        withAnimation{
+                            alphabetical.toggle()
+                        }
+                    } label: {
+                        Image(systemName: alphabetical ? "film" : "textformat")
+                            .symbolEffect(.bounce, value: alphabetical)
+                    }
+                }
+            }
+        }.preferredColorScheme(.dark)
     }
 }
 
