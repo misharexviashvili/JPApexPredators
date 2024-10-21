@@ -11,7 +11,9 @@ struct ContentView: View {
     let predators = Predators()
     @State var searchText = ""
     @State var alphabetical = false
+    @State var currentSelection = PredatorType.all
     var filteredDinos : [ApexPredator] {
+        predators.filter(by: currentSelection)
         predators.sort(by: alphabetical)
         return predators.search(for: searchText)
     }
@@ -47,7 +49,6 @@ struct ContentView: View {
                         }
                     }
                 }
-                
             }
             .navigationTitle("Apex Predators")
             .searchable(text: $searchText)
@@ -55,7 +56,7 @@ struct ContentView: View {
             .animation(.default, value : searchText)
             .toolbar{
                 ToolbarItem(placement: .topBarLeading){
-                    Button { 
+                    Button {
                         withAnimation{
                             alphabetical.toggle()
                         }
@@ -64,8 +65,21 @@ struct ContentView: View {
                             .symbolEffect(.bounce, value: alphabetical)
                     }
                 }
+                ToolbarItem(placement: .topBarTrailing){
+                    Menu{
+                        Picker("Filter", selection: $currentSelection.animation()){
+                            ForEach(PredatorType.allCases){
+                                type in
+                                Label(type.rawValue.capitalized, systemImage: type.icon)
+                            }
+                        }
+                    } label : {
+                        Image(systemName: "slider.horizontal.3")
+                    }
+                }
             }
-        }.preferredColorScheme(.dark)
+        }
+        .preferredColorScheme(.dark)
     }
 }
 
