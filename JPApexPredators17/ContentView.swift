@@ -22,32 +22,10 @@ struct ContentView: View {
         NavigationStack{
             List(filteredDinos) { predator in
                 NavigationLink{
-                    Image(predator.image)
-                        .resizable()
-                        .scaledToFit()
+//                    PredatorDetail
                     
                 } label : {
-                    HStack{
-                        //                Dinosaur image
-                        Image(predator.image)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 100, height: 100)
-                            .shadow(color: .white, radius: 1)
-                        VStack(alignment: .leading){
-                            //                    name
-                            Text(predator.name)
-                                .fontWeight(.bold)
-                            //                    type
-                            Text(predator.type.rawValue.capitalized)
-                                .font(.subheadline)
-                                .fontWeight(.semibold)
-                                .padding(.horizontal, 13)
-                                .padding(.vertical, 5)
-                                .background(predator.type.background)
-                                .clipShape(.capsule)
-                        }
-                    }
+                    DinoCard(dinoImage: predator.image, dinoName: predator.name, dinoType: predator.type.rawValue.capitalized, dinoTypeColor: predator.type.background)
                 }
             }
             .navigationTitle("Apex Predators")
@@ -86,3 +64,4 @@ struct ContentView: View {
 #Preview {
     ContentView()
 }
+//
