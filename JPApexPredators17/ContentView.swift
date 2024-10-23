@@ -22,7 +22,7 @@ struct ContentView: View {
         NavigationStack{
             List(filteredDinos) { predator in
                 NavigationLink{
-//                    PredatorDetail
+                    PredatorDetail(predator: predator)
                     
                 } label : {
                     DinoCard(dinoImage: predator.image, dinoName: predator.name, dinoType: predator.type.rawValue.capitalized, dinoTypeColor: predator.type.background)

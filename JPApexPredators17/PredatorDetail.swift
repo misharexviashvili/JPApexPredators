@@ -8,12 +8,41 @@
 import SwiftUI
 
 struct PredatorDetail: View {
+    let predator: ApexPredator
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        GeometryReader{geo in
+            ScrollView{
+                ZStack(alignment: .bottomTrailing){
+                    //                Background image
+                    Image(predator.type.rawValue)
+                        .resizable()
+                        .scaledToFit()
+                    //                Dino image
+                    Image(predator.image)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: geo.size.width/1.5, height: geo.size.height/3)
+                        .scaleEffect(x:-1)
+                        .shadow(color:.black ,radius: 7)
+                        .offset(y:20)
+                }
+                
+                //            Dino name
+                
+                //            Current location
+                
+                //            Appears in
+                
+                //            Movie scenes
+                
+                //            Link
+            }
+            .ignoresSafeArea()
+        }
     }
 }
 
 #Preview {
-    PredatorDetail()
+    PredatorDetail(predator: Predators().apexPredators[2])
 //        .preferredColorScheme(.dark)
 }
