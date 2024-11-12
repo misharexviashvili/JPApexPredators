@@ -50,42 +50,49 @@ struct PredatorDetail: View {
                         .font(.largeTitle)
                     //            Current location
                     NavigationLink {
-                        Image(predator.image)
-                            .resizable()
-                            .scaledToFit()
-                    }
-                    label: {
-                        Map(position: $position){
-                            Annotation(
-                                predator.name,
-                                coordinate: predator.location
-                            ){
-                                Image(
-                                    systemName: "mappin.and.ellipse"
+                        PredatorMap(
+                            position:  .camera(
+                                MapCamera(
+                                    centerCoordinate: predator.location,
+                                    distance: 1000,
+                                    heading: 250,
+                                    pitch: 80
                                 )
-                                .font(.largeTitle)
-                                .imageScale(.large)
-                                .symbolEffect(.pulse)
-                            }
-                            .annotationTitles(.hidden)
-                        }
-                        .frame(height: 125)
-                        
-                        .overlay(alignment: .trailing){
-                            Image(systemName: "greaterthan")
-                                .imageScale(.large)
-                                .font(.title3)
-                                .padding(.trailing, 5)
-                        }
-                        .overlay(alignment: .topLeading){
-                            Text("Current Location")
-                                .padding([.leading, .bottom], 5)
-                                .padding(.trailing, 8)
-                                .background(.black.opacity(0.33))
-                                .clipShape(.rect(bottomTrailingRadius: 15))
-                        }
-                        .clipShape(.rect(cornerRadius: 15))
+                            )
+                        )
                     }
+                label: {
+                    Map(position: $position){
+                        Annotation(
+                            predator.name,
+                            coordinate: predator.location
+                        ){
+                            Image(
+                                systemName: "mappin.and.ellipse"
+                            )
+                            .font(.largeTitle)
+                            .imageScale(.large)
+                            .symbolEffect(.pulse)
+                        }
+                        .annotationTitles(.hidden)
+                    }
+                    .frame(height: 125)
+                    
+                    .overlay(alignment: .trailing){
+                        Image(systemName: "greaterthan")
+                            .imageScale(.large)
+                            .font(.title3)
+                            .padding(.trailing, 5)
+                    }
+                    .overlay(alignment: .topLeading){
+                        Text("Current Location")
+                            .padding([.leading, .bottom], 5)
+                            .padding(.trailing, 8)
+                            .background(.black.opacity(0.33))
+                            .clipShape(.rect(bottomTrailingRadius: 15))
+                    }
+                    .clipShape(.rect(cornerRadius: 15))
+                }
                     //            Appears in
                     Text("Appears in:")
                         .font(.title3)
