@@ -14,6 +14,7 @@
 		0347701E2CC5B7B5007AAE4F /* jpapexpredators.json in Resources */ = {isa = PBXBuildFile; fileRef = 0347701D2CC5B7B5007AAE4F /* jpapexpredators.json */; };
 		034770202CC5B9DB007AAE4F /* ApexPredator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0347701F2CC5B9DB007AAE4F /* ApexPredator.swift */; };
 		034770222CC5B9EB007AAE4F /* Predators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034770212CC5B9EB007AAE4F /* Predators.swift */; };
+		035AA2C72CD649680048C4B6 /* PredatorMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035AA2C62CD649670048C4B6 /* PredatorMap.swift */; };
 		03A0715C2CC846F900DECE99 /* PredatorDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A0715B2CC846F900DECE99 /* PredatorDetail.swift */; };
 		03FD68772CC6F6B6000A45D2 /* DinoCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FD68762CC6F6B6000A45D2 /* DinoCard.swift */; };
 /* End PBXBuildFile section */
@@ -27,6 +28,7 @@
 		0347701D2CC5B7B5007AAE4F /* jpapexpredators.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = jpapexpredators.json; sourceTree = "<group>"; };
 		0347701F2CC5B9DB007AAE4F /* ApexPredator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApexPredator.swift; sourceTree = "<group>"; };
 		034770212CC5B9EB007AAE4F /* Predators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Predators.swift; sourceTree = "<group>"; };
+		035AA2C62CD649670048C4B6 /* PredatorMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredatorMap.swift; sourceTree = "<group>"; };
 		03A0715B2CC846F900DECE99 /* PredatorDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredatorDetail.swift; sourceTree = "<group>"; };
 		03FD68762CC6F6B6000A45D2 /* DinoCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DinoCard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -64,6 +66,7 @@
 				0347700F2CC5B726007AAE4F /* JPApexPredators17App.swift */,
 				034770112CC5B726007AAE4F /* ContentView.swift */,
 				03A0715B2CC846F900DECE99 /* PredatorDetail.swift */,
+				035AA2C62CD649670048C4B6 /* PredatorMap.swift */,
 				03FD68762CC6F6B6000A45D2 /* DinoCard.swift */,
 				0347701F2CC5B9DB007AAE4F /* ApexPredator.swift */,
 				034770212CC5B9EB007AAE4F /* Predators.swift */,
@@ -154,6 +157,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				034770202CC5B9DB007AAE4F /* ApexPredator.swift in Sources */,
+				035AA2C72CD649680048C4B6 /* PredatorMap.swift in Sources */,
 				03FD68772CC6F6B6000A45D2 /* DinoCard.swift in Sources */,
 				034770122CC5B726007AAE4F /* ContentView.swift in Sources */,
 				03A0715C2CC846F900DECE99 /* PredatorDetail.swift in Sources */,
