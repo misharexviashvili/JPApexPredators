@@ -9,11 +9,11 @@ import SwiftUI
 
 struct ContentView: View {
     let predators = Predators()
-    
+
     @State var searchText = ""
     @State var alphabetical = false
     @State var currentSelection = APType.all
-    
+
     var filteredDinos: [ApexPredator] {
         predators.filter(by: currentSelection)
         predators.sort(by: alphabetical)
@@ -69,7 +69,7 @@ struct ContentView: View {
                 }
                 ToolbarItem(placement: .topBarTrailing) {
                     Menu {
-                        Picker("Filter", selection: $currentSelection) {
+                        Picker("Filter", selection: $currentSelection.animation()) {
                             ForEach(APType.allCases) {
                                 type in
                                 Label(type.rawValue.capitalized, systemImage: type.icon)

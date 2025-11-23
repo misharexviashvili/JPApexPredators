@@ -32,8 +32,8 @@ enum APType: String, Decodable, CaseIterable, Identifiable {
     case land
     case air
     case sea
-    
-    var id : APType {
+
+    var id: APType {
         self
     }
 

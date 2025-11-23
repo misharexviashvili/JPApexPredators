@@ -8,15 +8,15 @@
 import Foundation
 
 class Predators {
-    var allApexPredators : [ApexPredator]  = []
-    var apexPredators : [ApexPredator] = []
-    
+    var allApexPredators: [ApexPredator] = []
+    var apexPredators: [ApexPredator] = []
+
     init() {
         decodeApexPredatorData()
     }
-    
+
     func decodeApexPredatorData() {
-        if let url = Bundle.main.url(forResource: "jpapexpredators", withExtension: "json"){
+        if let url = Bundle.main.url(forResource: "jpapexpredators", withExtension: "json") {
             do {
                 let data = try Data(contentsOf: url)
                 let decoder = JSONDecoder()
@@ -24,12 +24,12 @@ class Predators {
                 allApexPredators = try decoder.decode([ApexPredator].self, from: data)
                 apexPredators = allApexPredators
             } catch {
-             print("Error decoding JSON data \(error)")
+                print("Error decoding JSON data \(error)")
             }
         }
     }
-    
-    func search (for searchTerm: String)-> [ApexPredator] {
+
+    func search(for searchTerm: String) -> [ApexPredator] {
         if searchTerm.isEmpty {
             return apexPredators
         } else {
@@ -39,9 +39,9 @@ class Predators {
             }
         }
     }
-    
-    func sort (by alphabetical: Bool){
-        apexPredators.sort{
+
+    func sort(by alphabetical: Bool) {
+        apexPredators.sort {
             predator1, predator2 in
             if alphabetical {
                 predator1.name < predator2.name
@@ -50,16 +50,16 @@ class Predators {
             }
         }
     }
-    
-    func filter (by type: APType){
+
+    func filter(by type: APType) {
         if type == .all {
-        apexPredators = allApexPredators
+            apexPredators = allApexPredators
         } else {
-          apexPredators = allApexPredators.filter{
+            apexPredators = allApexPredators.filter {
                 predator in
                 predator.type == type
             }
         }
-      
+
     }
 }
