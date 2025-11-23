@@ -53,13 +53,14 @@ enum APType: String, Decodable, CaseIterable, Identifiable {
     var icon: String {
         switch self {
         case .land:
-            return "square.stack.3d.up.fill"
-        case .air:
             return "leaf.fill"
-        case .sea:
+        case .air:
             return "wind"
-        case .all:
+        case .sea:
             return "drop.fill"
+        case .all:
+            return "square.stack.3d.up.fill"
         }
     }
 }
+
