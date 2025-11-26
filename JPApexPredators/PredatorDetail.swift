@@ -5,10 +5,13 @@
 //  Created by Credo on 11/24/25.
 //
 
+import MapKit
 import SwiftUI
 
 struct PredatorDetail: View {
     let predator: ApexPredator
+    @State var position: MapCameraPosition
+
     var body: some View {
         GeometryReader { geo in
             ScrollView {
@@ -36,16 +39,50 @@ struct PredatorDetail: View {
                 VStack(alignment: .leading) {
                     Text(predator.name)
                         .font(.largeTitle)
+
+                    NavigationLink {
+                        Text("See on Map")
+                    } label: {
+                        Map(position: $position) {
+                            Annotation(predator.name, coordinate: predator.location) {
+                                Image(systemName: "mappin.and.ellipse")
+                                    .font(.largeTitle)
+                                    .imageScale(.large)
+                                    .symbolEffect(.pulse)
+                            }
+                            .annotationTitles(.hidden)
+                        }
+                        .frame(height: 125)
+                        .overlay(alignment: .trailing) {
+                            Image(systemName: "greaterthan")
+                                .imageScale(.large)
+                                .font(.title3)
+                                .padding(.trailing, 5)
+                        }
+                        .overlay(alignment: .topLeading) {
+                            Text("Current Location")
+                                .padding([.leading, .bottom], 5)
+                                .padding(.trailing, 8)
+                                .background(.black.opacity(0.33))
+                                .clipShape(.rect(bottomTrailingRadius: 15))
+                        }.clipShape(.rect(cornerRadius: 15))
+                    }
+                    
+
                     Text("Appears In:")
                         .font(.title3)
+                        .padding(.top)
+
                     ForEach(predator.movies, id: \.self) {
                         movie in
                         Text("•" + movie)
                             .font(.subheadline)
                     }
+
                     Text("Movie Moments:")
                         .font(.title)
                         .padding(.top, 15)
+
                     ForEach(predator.movieScenes) {
                         scene in
                         Text(scene.movie)
@@ -71,10 +108,18 @@ struct PredatorDetail: View {
 
         }
         .ignoresSafeArea()
+        .toolbarBackground(.automatic)
     }
 }
 
 #Preview {
-    PredatorDetail(predator: Predators().apexPredators[10])
+    NavigationStack {
+        PredatorDetail(
+            predator: Predators().apexPredators[10],
+            position: .camera(
+                MapCamera(centerCoordinate: Predators().apexPredators[10].location, distance: 30000)
+            )
+        )
         .preferredColorScheme(.dark)
+    }
 }
