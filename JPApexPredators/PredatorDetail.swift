@@ -16,6 +16,15 @@ struct PredatorDetail: View {
                     Image(predator.type.rawValue)
                         .resizable()
                         .scaledToFit()
+                        .overlay {
+                            LinearGradient(
+                                stops: [
+                                    Gradient.Stop(color: .clear, location: 0.8),
+                                    Gradient.Stop(color: .black, location: 1),
+                                ],
+                                startPoint: .top, endPoint: .bottom)
+                        }
+
                     Image(predator.image)
                         .resizable()
                         .scaledToFit()
@@ -29,7 +38,7 @@ struct PredatorDetail: View {
                         .font(.largeTitle)
                     Text("Appears In:")
                         .font(.title3)
-                    ForEach(predator.movies, id: \.self){
+                    ForEach(predator.movies, id: \.self) {
                         movie in
                         Text("•" + movie)
                             .font(.subheadline)
@@ -37,27 +46,26 @@ struct PredatorDetail: View {
                     Text("Movie Moments:")
                         .font(.title)
                         .padding(.top, 15)
-                    ForEach(predator.movieScenes){
+                    ForEach(predator.movieScenes) {
                         scene in
                         Text(scene.movie)
                             .font(.title2)
-                            .padding(.vertical,1)
-                        
+                            .padding(.vertical, 1)
+
                         Text(scene.sceneDescription)
                             .padding(.bottom, 15)
                     }
                     Text("Read More:")
                         .font(.caption)
-                    
+
                     Link(predator.link, destination: URL(string: predator.link)!)
                         .font(.caption)
                         .foregroundStyle(.blue)
-                    
+
                 }
                 .padding()
                 .padding(.bottom)
                 .frame(width: geo.size.width, alignment: .leading)
-                
 
             }
 
@@ -67,6 +75,6 @@ struct PredatorDetail: View {
 }
 
 #Preview {
-    PredatorDetail(predator: Predators().apexPredators[2])
-    //        .preferredColorScheme(.dark)
+    PredatorDetail(predator: Predators().apexPredators[10])
+        .preferredColorScheme(.dark)
 }
